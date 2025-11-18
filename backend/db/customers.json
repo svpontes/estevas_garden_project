@@ -1,0 +1,122 @@
+[
+  {
+    "firstName": "Michael",
+    "lastName": "Anderson",
+    "email": "michael.anderson@example.com",
+    "contact": "+1-202-555-0147",
+    "address": {
+      "street": "102 Maple Street",
+      "city": "Springfield",
+      "state": "Illinois",
+      "zipcode": "62704"
+    }
+  },
+  {
+    "firstName": "Emily",
+    "lastName": "Patterson",
+    "email": "emily.patterson@example.com",
+    "contact": "+1-303-555-2233",
+    "address": {
+      "street": "88 Elm Avenue",
+      "city": "Denver",
+      "state": "Colorado",
+      "zipcode": "80205"
+    }
+  },
+  {
+    "firstName": "Joshua",
+    "lastName": "Reynolds",
+    "email": "joshua.reynolds@example.com",
+    "contact": "+1-415-555-1129",
+    "address": {
+      "street": "450 Pine Drive",
+      "city": "San Francisco",
+      "state": "California",
+      "zipcode": "94110"
+    }
+  },
+  {
+    "firstName": "Samantha",
+    "lastName": "Lewis",
+    "email": "samantha.lewis@example.com",
+    "contact": "+1-718-555-3098",
+    "address": {
+      "street": "14 Ocean View Road",
+      "city": "Brooklyn",
+      "state": "New York",
+      "zipcode": "11209"
+    }
+  },
+  {
+    "firstName": "Daniel",
+    "lastName": "Carter",
+    "email": "daniel.carter@example.com",
+    "contact": "+1-602-555-7766",
+    "address": {
+      "street": "370 Desert Ridge Lane",
+      "city": "Phoenix",
+      "state": "Arizona",
+      "zipcode": "85004"
+    }
+  },
+  {
+    "firstName": "Olivia",
+    "lastName": "Green",
+    "email": "olivia.green@example.com",
+    "contact": "+1-206-555-4481",
+    "address": {
+      "street": "921 Lakeshore Boulevard",
+      "city": "Seattle",
+      "state": "Washington",
+      "zipcode": "98103"
+    }
+  },
+  {
+    "firstName": "William",
+    "lastName": "Turner",
+    "email": "william.turner@example.com",
+    "contact": "+1-407-555-0099",
+    "address": {
+      "street": "52 Palm Tree Drive",
+      "city": "Orlando",
+      "state": "Florida",
+      "zipcode": "32801"
+    }
+  },
+  {
+    "firstName": "Ava",
+    "lastName": "Mitchell",
+    "email": "ava.mitchell@example.com",
+    "contact": "+1-801-555-5557",
+    "address": {
+      "street": "387 Mountain Crest Road",
+      "city": "Salt Lake City",
+      "state": "Utah",
+      "zipcode": "84103"
+    }
+  },
+  {
+    "firstName": "Ethan",
+    "lastName": "Coleman",
+    "email": "ethan.coleman@example.com",
+    "contact": "+1-512-555-9912",
+    "address": {
+      "street": "19 River Bend Street",
+      "city": "Austin",
+      "state": "Texas",
+      "zipcode": "78701"
+    }
+  },
+  {
+    "firstName": "Grace",
+    "lastName": "Foster",
+    "email": "grace.foster@example.com",
+    "contact": "+1-312-555-7894",
+    "address": {
+      "street": "703 Lincoln Avenue",
+      "city": "Chicago",
+      "state": "Illinois",
+      "zipcode": "60614"
+    }
+  }
+]

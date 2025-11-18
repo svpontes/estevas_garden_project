@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Apple Pie",
+    "description": "Classic homemade pie with fresh apples and cinnamon.",
+    "price": 12.99,
+    "category": "Dessert",
+    "stock": 20,
+    "sku": "PIE-APL-001",
+    "createdAt": "2025-11-17T13:22:00Z"
+  },
+  {
+    "name": "Strawberry Pie",
+    "description": "Sweet strawberry pie with buttery crust and fresh berries.",
+    "price": 14.50,
+    "category": "Dessert",
+    "stock": 18,
+    "sku": "PIE-STR-002",
+    "createdAt": "2025-11-17T13:22:30Z"
+  },
+  {
+    "name": "Blueberry Pie",
+    "description": "Fresh blueberries baked with sugar and lemon zest.",
+    "price": 13.75,
+    "category": "Dessert",
+    "stock": 15,
+    "sku": "PIE-BLU-003",
+    "createdAt": "2025-11-17T13:23:00Z"
+  },
+  {
+    "name": "Cherry Pie",
+    "description": "Traditional tart cherry filling with golden crust.",
+    "price": 15.00,
+    "category": "Dessert",
+    "stock": 22,
+    "sku": "PIE-CHE-004",
+    "createdAt": "2025-11-17T13:23:30Z"
+  },
+  {
+    "name": "Pumpkin Pie",
+    "description": "Spiced pumpkin custard with creamy smooth texture.",
+    "price": 12.50,
+    "category": "Holiday Dessert",
+    "stock": 30,
+    "sku": "PIE-PUM-005",
+    "createdAt": "2025-11-17T13:24:00Z"
+  },
+  {
+    "name": "Pecan Pie",
+    "description": "Rich pie made with roasted pecans and caramel filling.",
+    "price": 16.99,
+    "category": "Dessert",
+    "stock": 12,
+    "sku": "PIE-PEC-006",
+    "createdAt": "2025-11-17T13:24:30Z"
+  },
+  {
+    "name": "Banana Cream Pie",
+    "description": "Fresh bananas layered inside creamy vanilla custard.",
+    "price": 14.25,
+    "category": "Cream Pie",
+    "stock": 16,
+    "sku": "PIE-BAN-007",
+    "createdAt": "2025-11-17T13:25:00Z"
+  },
+  {
+    "name": "Chocolate Silk Pie",
+    "description": "Velvety chocolate filling with whipped cream topping.",
+    "price": 17.50,
+    "category": "Chocolate Dessert",
+    "stock": 10,
+    "sku": "PIE-CHO-008",
+    "createdAt": "2025-11-17T13:25:30Z"
+  },
+  {
+    "name": "Lemon Meringue Pie",
+    "description": "Tangy lemon filling topped with toasted meringue.",
+    "price": 15.50,
+    "category": "Citrus Dessert",
+    "stock": 14,
+    "sku": "PIE-LEM-009",
+    "createdAt": "2025-11-17T13:26:00Z"
+  },
+  {
+    "name": "Raspberry Pie",
+    "description": "Sweet and tart raspberries bake into buttery crust.",
+    "price": 14.95,
+    "category": "Dessert",
+    "stock": 17,
+    "sku": "PIE-RAS-010",
+    "createdAt": "2025-11-17T13:26:30Z"
+  }
+]

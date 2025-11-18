@@ -1,0 +1,275 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte e cores base */
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(120deg, #2b4320, #043518, #2c4f64);
+  color: #f2f2f2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 40px;
+  width: 90%;
+  margin-top: 20px;
+  max-width: 700px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+/* Cabeçalho */
+header h1 {
+  color: #4ef037;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+header h2 {
+  font-weight: 400;
+  color: #b0d6ff;
+  margin-bottom: 20px;
+}
+
+.logomarca img{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    max-width: 100%;
+    width: 200px;
+    
+}
+
+.logomarca{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+        
+}
+
+/************************/
+.endpointimg{
+    display: flex;
+    max-width: 100%;
+    width: 35%;
+    height: auto;
+    justify-items: center;
+    
+    
+}
+
+.endpoints{
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr;
+  justify-content: center;
+  
+  align-content: center;
+  justify-items: start;
+  align-items:center;
+  height: 50px;
+  
+  padding: 20px;
+
+}
+
+.endpoints > :nth-child(2){
+  justify-self: start;
+
+}
+
+.endpoints > :nth-child(3){
+  justify-self: start;
+
+}
+.endpoints h3{
+  
+  justify-items: start;
+  align-items:center;
+}
+
+.endpoints a{
+  
+  justify-items: start;
+  align-items:center;
+}
+/*************************/
+
+/************************/
+.endpointimg{
+    display: flex;
+    max-width: 100%;
+    width: 35%;
+    height: auto;
+    justify-items: center;
+    
+    
+}
+
+.docs{
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr;
+  justify-content: center;
+  
+  align-content: center;
+  justify-items: start;
+  align-items:center;
+  height: 50px;
+  
+  padding: 20px;
+
+}
+
+.docs > :nth-child(2){
+  justify-self: start;
+
+}
+
+.docs > :nth-child(3){
+  justify-self: start;
+
+}
+.docs h3{
+  
+  justify-items: start;
+  align-items:center;
+}
+
+.docs a{
+  
+  justify-items: start;
+  align-items:center;
+}
+/*************************/
+.apidocimg{
+    display: flex;
+    max-width: 100%;
+    width: 8%;
+    height: auto;
+}
+.apidoc2img{
+    display: flex;
+    max-width: 100%;
+    width: 38%;
+    height: auto;
+}
+
+.githubimg{
+    display: flex;
+    max-width: 100%;
+    width: 6%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.renderimg{
+    display: flex;
+    max-width: 100%;
+    width: 20%;
+    height: auto;
+}
+
+/* Seções */
+section {
+  margin: 20px 0;
+  text-align: left;
+}
+
+section h3 {
+  color: #9de7ff;
+  margin-bottom: 10px;
+  border-left: 4px solid #4ef037;
+  padding-left: 8px;
+}
+
+/* Listas */
+ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+li {
+  margin: 8px 0;
+}
+
+/* Links */
+a {
+  color: #4ef037;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Info Section */
+.info p {
+  margin-bottom: 6px;
+  color: #e6e6e6;
+}
+
+/* Footer */
+footer {
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 30px;
+  padding-top: 10px;
+  font-size: 0.9rem;
+  color: #cfcfcf;
+  justify-content: center;
+  
+
+}
+
+footer p{
+
+    text-align: center;
+}
+
+
+footer > div a{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.ok {
+  color: #4ef037;
+  font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  section h3 {
+    font-size: 1.1rem;
+  }
+}
