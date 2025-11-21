@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Succsesfull Conection Endpoints!</title>
   <link rel="stylesheet" href="./styles/style.css">
+  <script src="./scripts/login.js" defer></script>
 </head>
 <body>
   <main class="container">
@@ -32,15 +33,44 @@
         <li><a href="/customers/all">Get All Customers</a></li>
       </ul>
     </section>
-    <div>
-            
-        </div>
+
+    
     <section class="docs">
       <img class="apidoc2img" src="./src/img/apidoc.png"  alt="api doc image icon" width="1046" height="1099" loading="lazy">
       <h3>API Documentation</h3>
       <ul>
         <li><a href="/api-docs" target="_blank">Access Swagger UI</a></li>
       </ul>
+    </section>
+
+    <section class="info">
+        <div>
+            <img class="apidocimg" src="./src/img/project.png" alt="api doc image icon" width="1195" height="1199" loading="lazy">
+        </div>
+      <p class="week"><strong>WEEK 04</strong></p>
+      <p class="task">Task: <strong>Start developing: Own Project</strong></p>
+      <p class="project">Project: <strong>WEEk 4 - Project 2 Part 2 (Authentication)</strong></p>
+    </section>
+
+     <section class="auth">
+      <h3>Authentication</h3>
+
+    
+      <div id="login-area">
+        <h4>Login</h4>
+        <input id="email" type="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+        <button id="login-btn">Login</button>
+        <p id="login-message"></p>
+      </div>
+
+
+      <div id="user-area" style="display:none;">
+        <p id="welcome-msg"></p>
+        <button id="profile-btn">Check Profile</button>
+        <button id="logout-btn">Logout</button>
+        <p id="profile-data"></p>
+      </div>
     </section>
            
     <footer>
