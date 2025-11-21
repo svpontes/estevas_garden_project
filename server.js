@@ -16,7 +16,8 @@ const { initDb } = require('./backend/db/connect');
 const customerRoutes = require('./backend/routes/customers');
 //Import route products
 const productsRoutes = require('./backend/routes/products.js');
-
+//import route authentication
+const authRoutes = require('./backend/routes/authentication.js')
 // Create express app
 const app = express();
 
@@ -42,6 +43,9 @@ app.use('/customers', customerRoutes);
 
 //Register API routes products
 app.use('/products', productsRoutes);
+
+//Register API routes authentication
+app.use('/auth', authRoutes);
 
 // Swagger API doc
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
