@@ -14,15 +14,15 @@ class User {
     }
 
     // Register a new user
-    static async register(name, email, password) {
-        const db = getDb();
+    // Register a new user
+static async register(name, email, password) {
+    const db = getDb();
 
-        // Check if user already exists
-        const exists = await db.collection(COLLECTION_NAME).findOne({ email });
-        if (exists) {
-            throw new Error("Email already registered");
-        }
-
+    // Check if user already exists
+    const exists = await db.collection(COLLECTION_NAME).findOne({ email });
+    if (exists) {
+        throw new Error("Email already registered");
+    }
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -32,10 +32,12 @@ class User {
         // Save to DB
         await db.collection(COLLECTION_NAME).insertOne(newUser);
 
-        return {
-            name: newUser.name,
-            email: newUser.email,
-            createdAt: newUser.createdAt
+    return {
+            
+        _id: result.insertedId, 
+        name: newUser.name, 
+        email: newUser.email, 
+        createdAt: newUser.createdAt
         };
     }
 
