@@ -259,7 +259,7 @@ a:hover {
 }
 
 .auth button:hover {
-  background: #2c5f31;
+  background: #90c711;
 }
 
 #login-message, #register-message {
@@ -280,7 +280,7 @@ a:hover {
 
 #welcome-msg {
   font-weight: bold;
-  color: #145214;
+  color: #000000;
   margin-bottom: 10px;
 }
 
