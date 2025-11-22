@@ -3,6 +3,7 @@ const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
 const jwt = require("jsonwebtoken");
 const User = require("../model/user");
+const crypto = require("crypto"); // <-- necessário
 const router = express.Router();
 
 // Configure Strategy
@@ -15,8 +16,29 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        const email = profile.emails && profile.emails[0]?.value;
+       
+        let email;
+
+        if (profile.emails && profile.emails.length > 0) {
+          email = profile.emails[0].value;
+        } else {
+          const fetch = require("node-fetch");
+          const result = await fetch("https://api.github.com/user/emails", {
+            headers: {
+              Authorization: `token ${accessToken}`,
+              "User-Agent": "OAuth-App"
+            }
+          });
+
+          const emails = await result.json();
+          const primaryEmail = emails.find((e) => e.primary && e.verified);
+
+          // fallback caso o usuário esconda email no GitHub
+          email = primaryEmail ? primaryEmail.email : profile.username + "@github.local";
+        }
+
         const name = profile.displayName || profile.username;
+        // ------------------------------
 
         let user = await User.findByEmail(email);
 
@@ -47,7 +69,6 @@ router.get(
   "/github/callback",
   passport.authenticate("github", { failureRedirect: "/?login=failed" }),
   (req, res) => {
-    
     const token = jwt.sign(
       { email: req.user.email, name: req.user.name },
       process.env.JWT_SECRET,
