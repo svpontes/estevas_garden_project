@@ -1,12 +1,12 @@
 const express = require("express");
 const passport = require("passport");
-const GitHubStrategy = require("passport-github2").Strategy;
+const GitHubStrategy = require("passport-github").Strategy;
 const jwt = require("jsonwebtoken");
 const User = require("../model/user");
 const crypto = require("crypto"); // <-- necessário
 const router = express.Router();
 
-console.log("🚀 OAuth config:", {
+console.log("OAuth config:", {
   clientID: process.env.GITHUB_CLIENT_ID,
   callbackURL: process.env.GITHUB_CALLBACK_URL
 });
@@ -18,44 +18,41 @@ passport.use(
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: process.env.GITHUB_CALLBACK_URL,
-      customHeaders: { Accept: "application/json" }
+      scope: ["user:email"],
+      customHeaders: {
+        Accept: "application/json",
+        "User-Agent": "EstevasGardenApp"
+      }
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-       
         let email;
 
         if (profile.emails && profile.emails.length > 0) {
           email = profile.emails[0].value;
         } else {
           const fetch = require("node-fetch");
-          const result = await fetch("https://api.github.com/user/emails", {
+          const response = await fetch("https://api.github.com/user/emails", {
             headers: {
               Authorization: `token ${accessToken}`,
-              "User-Agent": "OAuth-App"
-            }
+              "User-Agent": "EstevasGardenApp",
+              Accept: "application/vnd.github+json"
+            },
           });
 
-          const emails = await result.json();
-          const primaryEmail = emails.find((e) => e.primary && e.verified);
-
-          // fallback caso o usuário esconda email no GitHub
-          email = primaryEmail ? primaryEmail.email : profile.username + "@github.local";
+          const emails = await response.json();
+          const primary = emails.find(e => e.primary && e.verified);
+          email = primary ? primary.email : `${profile.username}@github.local`;
         }
 
-        const name = profile.displayName || profile.username;
-        // ------------------------------
-
         let user = await User.findByEmail(email);
-
         if (!user) {
-          user = await User.register(name, email, crypto.randomUUID());
-          user.oauthProvider = "github";
+          user = await User.register(profile.username, email, require("crypto").randomUUID());
         }
 
         return done(null, user);
       } catch (err) {
-        return done(err);
+        done(err);
       }
     }
   )
