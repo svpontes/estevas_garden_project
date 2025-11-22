@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../model/user");
 const crypto = require("crypto"); // <-- necessário
 const router = express.Router();
+const fetch = require("node-fetch");
 
 console.log("OAuth config:", {
   clientID: process.env.GITHUB_CLIENT_ID,
@@ -32,7 +33,7 @@ passport.use(
         if (profile.emails && profile.emails.length > 0) {
           email = profile.emails[0].value;
         } else {
-          const fetch = require("node-fetch");
+          //const fetch = require("node-fetch");
           const response = await fetch("https://api.github.com/user/emails", {
             headers: {
               Authorization: `token ${accessToken}`,
