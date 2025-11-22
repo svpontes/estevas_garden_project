@@ -6,6 +6,11 @@ const User = require("../model/user");
 const crypto = require("crypto"); // <-- necessário
 const router = express.Router();
 
+console.log("🚀 OAuth config:", {
+  clientID: process.env.GITHUB_CLIENT_ID,
+  callbackURL: process.env.GITHUB_CALLBACK_URL
+});
+
 // Configure Strategy
 passport.use(
   new GitHubStrategy(
@@ -13,6 +18,7 @@ passport.use(
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: process.env.GITHUB_CALLBACK_URL,
+      customHeaders: { Accept: "application/json" }
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
