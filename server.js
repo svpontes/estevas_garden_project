@@ -8,6 +8,7 @@ const errorHandler = require('./backend/middleware/errorHandler');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./backend/swagger/swagger-output.json');
 const cors = require('cors');
+const passport = require("passport");
 
 // Import route db
 const { initDb } = require('./backend/db/connect');
@@ -16,11 +17,14 @@ const customerRoutes = require('./backend/routes/customers');
 // Import route products
 const productsRoutes = require('./backend/routes/products.js');
 // Import route authentication
-const authRoutes = require('./backend/routes/authentication.js');
+const authRoutes = require('./backend/routes/authentication.js');//jwt
+
+const oauthRoutes = require('./backend/routes/oauth.js');//github aouthen
 
 // Create express app
 const app = express();
-
+//Oauth github
+app.use(passport.initialize());
 // Middleware to parse JSON
 app.use(express.json());
 
@@ -42,9 +46,13 @@ app.use('/products', productsRoutes);
 // Authentication routes
 app.use('/auth', authRoutes);
 
+// OAuth placeholder
+app.use('/auth', oauthRoutes);
+
+
+
 // Swagger documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
-
 
 // -------------------- STATIC FRONTEND MUST COME LAST --------------------
 
