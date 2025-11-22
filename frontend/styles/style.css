@@ -227,6 +227,61 @@ a:hover {
   color: #e6e6e6;
 }
 
+/* ===== AUTH SECTION STYLES ===== */
+
+
+.auth input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 1em;
+  transition: outline 0.2s ease;
+}
+
+.auth input:focus {
+  outline: 2px solid #5cb85c;
+}
+
+
+.auth button {
+  width: 90%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #3d7e44;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth button:hover {
+  background: #2c5f31;
+}
+
+#login-message, #register-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #b30000;
+}
+
+#profile-data {
+  margin-top: 15px;
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.9em;
+}
+
+#welcome-msg {
+  font-weight: bold;
+  color: #145214;
+  margin-bottom: 10px;
+}
 /* Footer */
 footer {
 

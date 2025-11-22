@@ -76,3 +76,24 @@ logoutBtn.addEventListener("click", () => {
 
   profileBtn.disabled = true; // desabilitar após logout
 });
+
+// REGISTER FUNCTION
+document.getElementById("register-btn").addEventListener("click", async () => {
+  const name = document.getElementById("reg-name").value.trim();
+  const email = document.getElementById("reg-email").value.trim();
+  const password = document.getElementById("reg-password").value.trim();
+
+  const res = await fetch(`${API_BASE}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password })
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    document.getElementById("register-message").innerText = "User created successfully! Now login.";
+  } else {
+    document.getElementById("register-message").innerText = data.error || "Could not create account";
+  }
+});

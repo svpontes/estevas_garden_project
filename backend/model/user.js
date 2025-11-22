@@ -14,30 +14,29 @@ class User {
     }
 
     // Register a new user
-    // Register a new user
-static async register(name, email, password) {
-    const db = getDb();
+    static async register(name, email, password) {
+        const db = getDb();
 
-    // Check if user already exists
-    const exists = await db.collection(COLLECTION_NAME).findOne({ email });
-    if (exists) {
-        throw new Error("Email already registered");
-    }
+        // Check if user already exists
+        const exists = await db.collection(COLLECTION_NAME).findOne({ email });
+        if (exists) {
+            throw new Error("Email already registered");
+        }
+
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create user instance
         const newUser = new User(name, email, hashedPassword);
 
-        // Save to DB
-        await db.collection(COLLECTION_NAME).insertOne(newUser);
+        // Save to DB and capture result
+        const result = await db.collection(COLLECTION_NAME).insertOne(newUser);
 
-    return {
-            
-        _id: result.insertedId, 
-        name: newUser.name, 
-        email: newUser.email, 
-        createdAt: newUser.createdAt
+        return {
+            _id: result.insertedId,
+            name: newUser.name,
+            email: newUser.email,
+            createdAt: newUser.createdAt
         };
     }
 
