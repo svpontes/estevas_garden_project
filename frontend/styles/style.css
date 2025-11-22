@@ -263,9 +263,10 @@ a:hover {
 }
 
 #login-message, #register-message {
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-weight: bold;
-  color: #b30000;
+  color: #ffffff;
 }
 
 #profile-data {
