@@ -1,61 +1,50 @@
-// Load environment variables
+// -------------------- ENVIRONMENT VARIABLES --------------------
 require('dotenv').config();
 
-// Imports required (dependencies)
+// -------------------- IMPORTS --------------------
 const express = require('express');
+const passport = require("passport");
 const path = require('path');
 const errorHandler = require('./backend/middleware/errorHandler');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./backend/swagger/swagger-output.json');
 const cors = require('cors');
-const passport = require("passport");
 
-// Import route db
+// DB connection function
 const { initDb } = require('./backend/db/connect');
-// Import route customers
+
+// Routes
 const customerRoutes = require('./backend/routes/customers');
-// Import route products
 const productsRoutes = require('./backend/routes/products.js');
-// Import route authentication
-const authRoutes = require('./backend/routes/authentication.js');//jwt
+const authRoutes = require('./backend/routes/authentication.js');  // JWT login/register
+const oauthRoutes = require('./backend/routes/oauth.js');          // GitHub login
 
-const oauthRoutes = require('./backend/routes/oauth.js');//github aouthen
-
-// Create express app
+// -------------------- EXPRESS APP --------------------
 const app = express();
-//Oauth github
+
+// Security / Auth Middleware (must run BEFORE routes)
 app.use(passport.initialize());
-// Middleware to parse JSON
+
+// Body parser for JSON requests
 app.use(express.json());
 
-// Allow all origins with CORS
+// -------------------- CORS POLICY --------------------
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// -------------------- REGISTER API ROUTES (BEFORE STATIC FILES) --------------------
-
-// Customers routes
+// -------------------- API ROUTES (must be BEFORE frontend files) --------------------
 app.use('/customers', customerRoutes);
-
-// Products routes
 app.use('/products', productsRoutes);
-
-// Authentication routes
 app.use('/auth', authRoutes);
+app.use('/auth', oauthRoutes);  // same prefix for OAuth
 
-// OAuth placeholder
-app.use('/auth', oauthRoutes);
-
-
-
-// Swagger documentation
+// -------------------- SWAGGER DOCS --------------------
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
 
-// -------------------- STATIC FRONTEND MUST COME LAST --------------------
-
+// -------------------- STATIC FRONTEND --------------------
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.get('/', (req, res) => {
@@ -65,15 +54,14 @@ app.get('/', (req, res) => {
 // -------------------- GLOBAL ERROR HANDLER --------------------
 app.use(errorHandler);
 
-// Get PORT from environment or default PORT 8080
+// -------------------- SERVER START --------------------
 const PORT = process.env.PORT || 8080;
 
-// Start database first, then server
 if (process.env.NODE_ENV !== "test") {
   initDb((err) => {
     if (err) {
       console.error("Failed to connect to MongoDB:", err.message);
-      process.exit(1); // Stop server
+      process.exit(1);
     }
 
     console.log("MongoDB connected successfully!");
