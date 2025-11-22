@@ -276,6 +276,7 @@ a:hover {
   border-radius: 8px;
   border: 1px solid #ddd;
   font-size: 0.9em;
+  color: #000000;
 }
 
 #welcome-msg {
