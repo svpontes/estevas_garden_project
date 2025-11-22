@@ -17,10 +17,12 @@ window.onload = () => {
   if (token) {
     loginArea.style.display = "none";
     userArea.style.display = "block";
-    welcomeMsg.innerText = "You are logged in.";
-    profileBtn.disabled = false; // habilitado pois existe token
+    welcomeMsg.style.display = "block";
+    welcomeMsg.innerText = `Welcome back!`;
+    profileBtn.disabled = false;
   } else {
-    profileBtn.disabled = true; // desabilitado sem token
+    profileBtn.disabled = true;
+    welcomeMsg.style.display = "none";
   }
 };
 
@@ -43,9 +45,11 @@ loginBtn.addEventListener("click", async () => {
     loginMessage.innerText = "Login successful!";
     loginArea.style.display = "none";
     userArea.style.display = "block";
+    
+    welcomeMsg.style.display = "block";
     welcomeMsg.innerText = `Welcome, ${email}!`;
 
-    profileBtn.disabled = false; // ativar após login
+    profileBtn.disabled = false;
   } else {
     loginMessage.innerText = "Invalid credentials.";
   }
@@ -70,11 +74,11 @@ logoutBtn.addEventListener("click", () => {
   loginArea.style.display = "block";
   userArea.style.display = "none";
 
+  welcomeMsg.style.display = "none";
   profileData.innerText = "";
-  welcomeMsg.innerText = "";
   loginMessage.innerText = "You have logged out.";
 
-  profileBtn.disabled = true; // desabilitar após logout
+  profileBtn.disabled = true;
 });
 
 // REGISTER FUNCTION

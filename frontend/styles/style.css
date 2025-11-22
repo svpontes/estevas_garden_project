@@ -294,10 +294,13 @@ a:hover {
   justify-content: center;
 }
 
-#welcome-msg p{
-
+#welcome-msg {
+  display: none;
   color: white;
+  font-weight: bold;
+  margin-top: 10px;
 }
+
 /* Footer */
 footer {
 
