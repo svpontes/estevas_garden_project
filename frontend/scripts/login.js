@@ -83,11 +83,12 @@ logoutBtn.addEventListener("click", () => {
   loginArea.style.display = "block";
   userArea.style.display = "none";
 
-  welcomeMsg.style.display = "none";
-  welcomeMsg.innerText = "";
   profileData.innerText = "";
+  welcomeMsg.innerText = "";
   loginMessage.innerText = "You have logged out.";
 
+  welcomeMsg.style.display = "none";
+  profileData.style.display = "none";
   profileBtn.disabled = true;
 });
 
