@@ -1,9 +1,11 @@
+// 🔹 Constantes e seletores
 const API_BASE = "https://estevas-garden-project.onrender.com/auth";
-// local: const API_BASE = "http://localhost:8080/auth";
 
 const loginBtn = document.getElementById("login-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const profileBtn = document.getElementById("profile-btn");
+const registerBtn = document.getElementById("register-btn");
+
 const loginMessage = document.getElementById("login-message");
 const welcomeMsg = document.getElementById("welcome-msg");
 const profileData = document.getElementById("profile-data");
@@ -11,9 +13,10 @@ const profileData = document.getElementById("profile-data");
 const loginArea = document.getElementById("login-area");
 const userArea = document.getElementById("user-area");
 
-// Check login state on load
+// 🔹 Executa ao carregar a página
 window.onload = () => {
   const token = localStorage.getItem("auth_token");
+
   if (token) {
     loginArea.style.display = "none";
     userArea.style.display = "block";
@@ -26,7 +29,7 @@ window.onload = () => {
   }
 };
 
-// LOGIN FUNCTION
+// 🔹 Login
 loginBtn.addEventListener("click", async () => {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -45,7 +48,7 @@ loginBtn.addEventListener("click", async () => {
     loginMessage.innerText = "Login successful!";
     loginArea.style.display = "none";
     userArea.style.display = "block";
-    
+
     welcomeMsg.style.display = "block";
     welcomeMsg.innerText = `Welcome, ${email}!`;
 
@@ -55,7 +58,7 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-// CHECK PROFILE (Protected Route)
+// 🔹 Ver Perfil (Rota Protegida)
 profileBtn.addEventListener("click", async () => {
   const token = localStorage.getItem("auth_token");
 
@@ -64,11 +67,17 @@ profileBtn.addEventListener("click", async () => {
     headers: { "Authorization": `Bearer ${token}` }
   });
 
+  if (!res.ok) {
+    profileData.innerText = "Session expired. Please login again.";
+    logoutBtn.click();
+    return;
+  }
+
   const data = await res.json();
   profileData.innerText = JSON.stringify(data, null, 2);
 });
 
-// LOGOUT FUNCTION
+// 🔹 Logout
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("auth_token");
   loginArea.style.display = "block";
@@ -81,8 +90,8 @@ logoutBtn.addEventListener("click", () => {
   profileBtn.disabled = true;
 });
 
-// REGISTER FUNCTION
-document.getElementById("register-btn").addEventListener("click", async () => {
+// 🔹 Registrar Novo Usuário
+registerBtn.addEventListener("click", async () => {
   const name = document.getElementById("reg-name").value.trim();
   const email = document.getElementById("reg-email").value.trim();
   const password = document.getElementById("reg-password").value.trim();
@@ -95,9 +104,7 @@ document.getElementById("register-btn").addEventListener("click", async () => {
 
   const data = await res.json();
 
-  if (res.ok) {
-    document.getElementById("register-message").innerText = "User created successfully! Now login.";
-  } else {
-    document.getElementById("register-message").innerText = data.error || "Could not create account";
-  }
+  document.getElementById("register-message").innerText = 
+    res.ok ? "User created successfully! Now login." 
+           : (data.error || "Could not create account");
 });
