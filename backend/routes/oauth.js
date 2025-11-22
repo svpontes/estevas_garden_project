@@ -69,6 +69,8 @@ passport.deserializeUser(async (email, done) =>
 router.get("/github", passport.authenticate("github", { scope: ["user:email"] }));
 
 // GitHub Callback
+
+/*
 router.get(
   "/github/callback",
   passport.authenticate("github", { failureRedirect: "/?login=failed" }),
@@ -82,5 +84,37 @@ router.get(
     res.redirect(`/?token=${token}`);
   }
 );
+*/
+// GitHub Callback
+router.get(
+  "/github/callback",
+  // Adicione esta função customizada de middleware antes do passport.authenticate
+  (req, res, next) => {
+    passport.authenticate("github", (err, user, info) => {
+      if (err) {
+        console.error("❌ ERRO DE AUTENTICAÇÃO GITHUB:", err);
+        // Se houver um erro, o Passport normalmente chama done(err)
+        // 'err' deve conter a mensagem do GitHub, como 'Failed to obtain access token'
+      }
+      if (!user) {
+        return res.redirect("/?login=failed");
+      }
+      // Se for bem-sucedido, faça o login manual e vá para o próximo middleware (abaixo)
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        next();
+      });
+    })(req, res, next);
+  },
+  // Middleware final para gerar o JWT (este só será executado se o login for bem-sucedido)
+  (req, res) => {
+    const token = jwt.sign(
+      { email: req.user.email, name: req.user.name },
+      process.env.JWT_SECRET,
+      { expiresIn: "2h" }
+    );
 
+    res.redirect(`/?token=${token}`);
+  }
+);
 module.exports = router;
