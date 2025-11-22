@@ -4,6 +4,9 @@ const User = require("../model/user");
 const auth = require("../middleware/auth");
 const router = express.Router();
 
+
+
+
 // REGISTER
 router.post("/register", async (req, res) => {
   try {
@@ -55,5 +58,20 @@ router.get("/profile", auth, async (req, res) => {
     name: req.user.name
   });
 });
+
+//test route
+
+const { getDb } = require("../db/connect");
+
+router.get("/debug-db", (req, res) => {
+  try {
+    const db = getDb();
+    res.json({ connectedTo: db.databaseName });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+//************************************************* */
 
 module.exports = router;
