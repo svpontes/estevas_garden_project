@@ -283,6 +283,21 @@ a:hover {
   color: #145214;
   margin-bottom: 10px;
 }
+
+.week04{
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 30px;
+  padding-top: 10px;
+  font-size: 0.9rem;
+  color: #cfcfcf;
+  justify-content: center;
+}
+
+#welcome-msg p{
+
+  color: white;
+}
 /* Footer */
 footer {
 
