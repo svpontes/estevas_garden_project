@@ -19,11 +19,11 @@
 
     "/auth/profile": {
       "get": {
-        "summary": "Retorna as informações do usuário autenticado",
+        "summary": "Return information about athenticated user",
         "tags": ["Authentication"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
-          "200": { "description": "Usuário autenticado" },
+          "200": { "description": "Authenticated user" },
           "401": { "description": "Token inválido ou ausente" }
         }
       }
