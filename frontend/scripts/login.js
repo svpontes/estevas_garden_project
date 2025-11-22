@@ -1,4 +1,4 @@
-// 🔹 Constantes e seletores
+//Constantes e seletores
 const API_BASE = "https://estevas-garden-project.onrender.com/auth";
 
 const loginBtn = document.getElementById("login-btn");
@@ -13,7 +13,7 @@ const profileData = document.getElementById("profile-data");
 const loginArea = document.getElementById("login-area");
 const userArea = document.getElementById("user-area");
 
-// 🔹 Executa ao carregar a página
+//Executa ao carregar a página
 window.onload = () => {
   const token = localStorage.getItem("auth_token");
 
@@ -29,7 +29,7 @@ window.onload = () => {
   }
 };
 
-// 🔹 Login
+//Login
 loginBtn.addEventListener("click", async () => {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -58,7 +58,7 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-// 🔹 Ver Perfil (Rota Protegida)
+//Ver Perfil (Rota Protegida)
 profileBtn.addEventListener("click", async () => {
   const token = localStorage.getItem("auth_token");
 
@@ -77,20 +77,21 @@ profileBtn.addEventListener("click", async () => {
   profileData.innerText = JSON.stringify(data, null, 2);
 });
 
-// 🔹 Logout
+//Logout
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("auth_token");
   loginArea.style.display = "block";
   userArea.style.display = "none";
 
   welcomeMsg.style.display = "none";
+  welcomeMsg.innerText = "";
   profileData.innerText = "";
   loginMessage.innerText = "You have logged out.";
 
   profileBtn.disabled = true;
 });
 
-// 🔹 Registrar Novo Usuário
+//register new user
 registerBtn.addEventListener("click", async () => {
   const name = document.getElementById("reg-name").value.trim();
   const email = document.getElementById("reg-email").value.trim();
