@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../model/user");
 const crypto = require("crypto"); // <-- necessário
 const router = express.Router();
-const fetch = require("node-fetch");
+const { default: fetch } = require("node-fetch");
 
 console.log("OAuth config:", {
   clientID: process.env.GITHUB_CLIENT_ID,
