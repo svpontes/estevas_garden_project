@@ -1,2 +1,10 @@
-node_modules
+# Dependency folders
+node_modules/
+
+
+# Environment Files
 .env
+.env.local
+.env.*.local
+.env.production
+.env.development
