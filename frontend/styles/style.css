@@ -236,6 +236,49 @@ a:hover {
   color: #e6e6e6;
 }
 
+/* ===== BOTÃO OAuth: GitHub ===== */
+
+.auth-btn.github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 90%;
+  padding: 12px;
+
+  background: #4ef037;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.auth-btn.github::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg");
+  background-size: cover;
+}
+
+.auth-btn.github:hover {
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.auth-btn.github:active {
+  transform: scale(0.97);
+}
+
+
 /* ===== AUTH SECTION STYLES ===== */
 
 
