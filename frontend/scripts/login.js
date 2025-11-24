@@ -42,7 +42,7 @@ window.onload = () => {
 
     const payload = decodeJwt(token);
     welcomeMsg.style.display = "block";
-    welcomeMsg.innerText = `Welcome, ${payload?.name || "User"} 👋`;
+    welcomeMsg.innerText = `Welcome, ${payload?.name || "User!"} \You are Login in via: Github OAuth`;
 
     profileBtn.disabled = false;
   } else {
