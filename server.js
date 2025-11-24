@@ -61,15 +61,15 @@ const PORT = process.env.PORT || 8080;
 
 initDb((err) => {
   if (err) {
-    console.error("❌ MongoDB connection failed:", err.message);
+    console.error("MongoDB connection failed:", err.message);
     process.exit(1);
   }
 
   console.log("✔ MongoDB connected");
 
   app.listen(PORT, () => {
-    console.log(`🚀 Server running at: http://localhost:${PORT}`);
-    console.log(`📄 Swagger: http://localhost:${PORT}/api-docs`);
+    console.log(`Server running at: http://localhost:${PORT}`);
+    console.log(`Swagger: http://localhost:${PORT}/api-docs`);
   });
 });
 
