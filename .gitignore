@@ -1,7 +1,5 @@
 # Dependency folders
 node_modules/
-
-
 # Environment Files
 .env
 .env.local
