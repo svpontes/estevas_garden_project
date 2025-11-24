@@ -13,15 +13,37 @@ const profileData = document.getElementById("profile-data");
 const loginArea = document.getElementById("login-area");
 const userArea = document.getElementById("user-area");
 
-//Executa ao carregar a página
+// ----------------------------
+// STEP 1: Captura o token vindo do GitHub OAuth (?token=xxx)
+// ----------------------------
+(function handleOAuthRedirect() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tokenFromOAuth = urlParams.get("token");
+
+  if (tokenFromOAuth) {
+    console.log("OAuth token capturado:", tokenFromOAuth);
+
+    localStorage.setItem("auth_token", tokenFromOAuth);
+
+    // Remove token da URL para não expor
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+})();
+
+// ----------------------------
+// STEP 2: Ajusta UI quando página carrega
+// ----------------------------
 window.onload = () => {
   const token = localStorage.getItem("auth_token");
 
   if (token) {
     loginArea.style.display = "none";
     userArea.style.display = "block";
+
+    const payload = decodeJwt(token);
     welcomeMsg.style.display = "block";
-    welcomeMsg.innerText = `Welcome back!`;
+    welcomeMsg.innerText = `Welcome, ${payload?.name || "User"} 👋`;
+
     profileBtn.disabled = false;
   } else {
     profileBtn.disabled = true;
@@ -29,7 +51,18 @@ window.onload = () => {
   }
 };
 
-//Login
+// Helper para decodificar JWT sem biblioteca
+function decodeJwt(token) {
+  try {
+    return JSON.parse(atob(token.split(".")[1]));
+  } catch {
+    return null;
+  }
+}
+
+// ----------------------------
+// Login com usuário/password
+// ----------------------------
 loginBtn.addEventListener("click", async () => {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -58,7 +91,9 @@ loginBtn.addEventListener("click", async () => {
   }
 });
 
-//Ver Perfil (Rota Protegida)
+// ----------------------------
+// Ver Perfil (rota protegida)
+// ----------------------------
 profileBtn.addEventListener("click", async () => {
   const token = localStorage.getItem("auth_token");
 
@@ -77,7 +112,9 @@ profileBtn.addEventListener("click", async () => {
   profileData.innerText = JSON.stringify(data, null, 2);
 });
 
-//Logout
+// ----------------------------
+// Logout
+// ----------------------------
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("auth_token");
   loginArea.style.display = "block";
@@ -92,7 +129,9 @@ logoutBtn.addEventListener("click", () => {
   profileBtn.disabled = true;
 });
 
-//register new user
+// ----------------------------
+// Register new user
+// ----------------------------
 registerBtn.addEventListener("click", async () => {
   const name = document.getElementById("reg-name").value.trim();
   const email = document.getElementById("reg-email").value.trim();
